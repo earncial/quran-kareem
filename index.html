@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>Qur'an Kareem • Read & Search | Premium Free Quran App</title>
+    <meta name="description" content="Experience Qur'an Kareem by Earncial Global. A premium, 100% free, and offline Quran reading app for Android. Features real time search, hide and reveal memorization, Khatm tracking, bookmarks, and 100% original Tanzil text.">
+    <meta name="keywords" content="Qur'an Kareem, Quran Kareem App, Free Quran App, Quran Reading App, Offline Quran App, Quran Arabic Text, Quran Search App, Quran Memorization App, Quran Bookmarks, Best Quran App for Android, Tanzil Quran, Quran for Imams, Quran for Students, Khatm Tracker">
+    <meta name="author" content="Earncial Global">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#00AAFF">
+    <link rel="canonical" href="https://quran.earncial.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quran.earncial.com/">
+    <meta property="og:title" content="Qur'an Kareem • Read & Search | Premium Free Quran App">
+    <meta property="og:description" content="A beautiful, completely free, and offline Quran reading experience for Android. Read, search, bookmark, and memorize with Qur'an Kareem.">
+    <meta property="og:image" content="https://quran.earncial.com/og-image.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00AAFF;
+            --primary-dark: #0088CC;
+            --primary-light: #E6F7FF;
+            --primary-glow: rgba(0, 170, 255, 0.4);
+            --bg-color: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+            
+            --radius-btn: 12px; 
+            --radius-card: 24px;
+            --radius-pill: 50px;
+            
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 170, 255, 0.15);
+            --shadow-hover: 0 30px 60px -15px rgba(0, 170, 255, 0.25);
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-family: 'Inter', sans-serif; color: var(--text-main); background-color: var(--bg-color); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        body { overflow-x: hidden; background-image: radial-gradient(circle at 0% 0%, rgba(0, 170, 255, 0.03) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(0, 170, 255, 0.05) 0%, transparent 40%); background-attachment: fixed; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; color: var(--text-main); letter-spacing: -0.02em; }
+        a { text-decoration: none; color: var(--primary); transition: var(--transition); }
+        ul { list-style: none; }
+        img, svg { max-width: 100%; display: block; }
+
+        /* Typography */
+        .section-header { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-subtitle { font-size: 1.15rem; color: var(--text-muted); }
+
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: var(--radius-btn); font-weight: 600; font-size: 1rem; transition: var(--transition); cursor: pointer; border: none; gap: 10px; font-family: 'Inter', sans-serif; }
+        .btn-primary { background-color: var(--primary); color: var(--white); box-shadow: 0 8px 20px -6px var(--primary-glow); }
+        .btn-primary:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
+        .btn-play { background-color: var(--text-main); color: var(--white); padding: 12px 24px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.3); }
+        .btn-play:hover { background-color: #000; transform: translateY(-2px); }
+        .btn-play svg { width: 28px; height: 28px; flex-shrink: 0; }
+        .btn-play-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
+        .btn-play-text span:first-child { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+        .btn-play-text span:last-child { font-size: 1.2rem; font-weight: 700; font-family: 'Outfit', sans-serif; }
+
+        /* Header */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: var(--transition); padding: 1.5rem 0; }
+        header.scrolled { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 1rem 0; }
+        .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text-main); }
+        .logo-img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
+        .logo-icon-fallback { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; display: none; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 10px var(--primary-glow); }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta { display: block; }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--text-main); }
+
+        /* Mobile Menu */
+        .mobile-menu { position: fixed; top: 80px; left: 0; width: 100%; background: var(--white); padding: 2rem; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; gap: 1.5rem; transform: translateY(-150%); transition: var(--transition); z-index: 999; border-radius: 0 0 var(--radius-card) var(--radius-card); }
+        .mobile-menu.active { transform: translateY(0); }
+        .mobile-menu a { color: var(--text-main); font-weight: 600; font-size: 1.1rem; }
+
+        /* Hero Section */
+        .hero { padding: 12rem 2rem 6rem; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-content { animation: slideUp 0.8s ease-out; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); color: var(--primary-dark); padding: 8px 16px; border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600; margin-bottom: 2rem; border: 1px solid rgba(0, 170, 255, 0.2); }
+        .hero h1 { font-size: 4rem; font-weight: 900; margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 520px; line-height: 1.7; }
+        .hero-buttons { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+
+        /* Hero Real Image */
+        .hero-visual { position: relative; display: flex; justify-content: flex-end; animation: fadeIn 1s ease-out; }
+        .real-app-image { width: 100%; max-width: 380px; height: auto; border-radius: 40px; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.8), 0 0 0 10px rgba(0, 170, 255, 0.1); border: 1px solid #E2E8F0; transform: perspective(1000px) rotateY(-5deg) rotateX(2deg); transition: var(--transition); object-fit: cover; }
+        .real-app-image:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-10px); }
+
+        /* Tanzil Verification Banner */
+        .tanzil-banner { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border-radius: var(--radius-card); padding: 4rem 2rem; text-align: center; color: white; max-width: 1280px; margin: 0 auto 6rem auto; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); }
+        .tanzil-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .tanzil-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 170, 255, 0.2); color: var(--primary); padding: 8px 20px; border-radius: var(--radius-pill); font-weight: 700; font-size: 0.9rem; margin-bottom: 1.5rem; border: 1px solid rgba(0, 170, 255, 0.3); }
+        .tanzil-banner h2 { color: white; font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
+        .tanzil-banner p { color: #94A3B8; font-size: 1.15rem; line-height: 1.7; }
+
+        /* Target Audience Sections */
+        .audience { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .audience-card { background: var(--bg-card); border-radius: var(--radius-card); padding: 3rem 2.5rem; box-shadow: var(--shadow-md); border: 1px solid rgba(226, 232, 240, 0.8); transition: var(--transition); position: relative; }
+        .audience-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--primary-light); }
+        .audience-icon { width: 64px; height: 64px; background: var(--primary-light); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 2rem; flex-shrink: 0; }
+        .audience-icon svg { width: 32px; height: 32px; }
+        .audience-card h3 { font-size: 1.6rem; margin-bottom: 1rem; font-weight: 800; }
+        .audience-card p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .audience-list { display: flex; flex-direction: column; gap: 1rem; }
+        .audience-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; font-weight: 500; color: var(--text-main); line-height: 1.5; }
+        
+        /* FIXED: Strict size for audience list icons */
+        .audience-list li svg { color: var(--primary); width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+
+        /* Features Grid */
+        .features { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .bento-card { background: var(--bg-card); border-radius: var(--radius-card); padding: 2.5rem; box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
+        .bento-card.large { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; }
+        .bento-icon { width: 56px; height: 56px; background: var(--primary-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 1.5rem; flex-shrink: 0; }
+        .bento-icon svg { width: 28px; height: 28px; }
+        .bento-card h3 { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 700; }
+        .bento-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Comparison Section */
+        .comparison { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+        
+        /* FIXED: Wrapper for horizontal scroll on mobile */
+        .comparison-table-wrapper { 
+            background: var(--bg-card); 
+            border-radius: var(--radius-card); 
+            box-shadow: var(--shadow-lg); 
+            border: 1px solid #E2E8F0; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .comparison-table { width: 100%; min-width: 800px; border-collapse: collapse; text-align: left; }
+        .comparison-table th { background: #F8FAFC; padding: 1.5rem 1rem; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); border-bottom: 1px solid #E2E8F0; }
+        .comparison-table th:first-child { width: 25%; padding-left: 1.5rem; }
+        .comparison-table th.highlight { background: var(--primary-light); color: var(--primary-dark); text-align: center; border-left: 1px solid rgba(0, 170, 255, 0.2); border-right: 1px solid rgba(0, 170, 255, 0.2); }
+        .comparison-table td { padding: 1.25rem 1rem; border-bottom: 1px solid #F1F5F9; font-size: 0.95rem; color: var(--text-muted); text-align: center; }
+        .comparison-table td:first-child { font-weight: 600; color: var(--text-main); text-align: left; padding-left: 1.5rem; }
+        .comparison-table td.highlight { background: rgba(0, 170, 255, 0.03); border-left: 1px solid rgba(0, 170, 255, 0.1); border-right: 1px solid rgba(0, 170, 255, 0.1); }
+        
+        /* FIXED: Strict sizes for table icons */
+        .check-icon { color: #10B981; width: 20px; height: 20px; display: inline-block; vertical-align: middle; flex-shrink: 0; }
+        .cross-icon { color: #EF4444; width: 20px; height: 20px; display: inline-block; vertical-align: middle; flex-shrink: 0; }
+        .text-limited { color: #F59E0B; font-weight: 600; font-size: 0.85rem; }
+
+        /* FAQ Section */
+        .faq { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
+        .faq-list { display: flex; flex-direction: column; gap: 1rem; }
+        .faq-item { background: var(--white); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid #F1F5F9; transition: var(--transition); }
+        .faq-item:hover { border-color: var(--primary-light); box-shadow: var(--shadow-md); }
+        .faq-question { width: 100%; padding: 1.75rem 2rem; display: flex; justify-content: space-between; align-items: center; background: none; border: none; text-align: left; font-size: 1.15rem; font-weight: 700; color: var(--text-main); cursor: pointer; font-family: 'Outfit', sans-serif; }
+        .faq-question svg { transition: transform 0.4s ease; color: var(--primary); background: var(--primary-light); border-radius: 50%; padding: 4px; width: 32px; height: 32px; flex-shrink: 0; }
+        .faq-question.active svg { transform: rotate(180deg); }
+        .faq-answer { padding: 0 2rem; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
+        .faq-answer.active { padding: 0 2rem 2rem; max-height: 300px; }
+
+        /* CTA Section */
+        .cta { padding: 8rem 2rem; background: var(--text-main); text-align: center; color: white; position: relative; overflow: hidden; }
+        .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .cta h2 { color: white; font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 800; }
+        .cta p { color: #94A3B8; font-size: 1.25rem; margin-bottom: 3rem; }
+        .cta .btn-play { background: var(--primary); color: white; margin: 0 auto; box-shadow: 0 10px 30px -5px var(--primary-glow); }
+        .cta .btn-play:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        /* Footer */
+        footer { background: #0B1120; color: white; padding: 5rem 2rem 2rem; }
+        .footer-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-brand h3 { color: white; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; font-weight: 800; }
+        .footer-brand p { color: #94A3B8; font-size: 1rem; margin-bottom: 2rem; max-width: 350px; line-height: 1.7; }
+        .footer-links h4 { color: white; margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700; }
+        .footer-links ul { display: flex; flex-direction: column; gap: 1rem; }
+        .footer-links a { color: #94A3B8; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--primary); padding-left: 4px; }
+        .social-link { display: inline-flex; align-items: center; gap: 10px; color: #94A3B8; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: var(--radius-pill); border: 1px solid rgba(255,255,255,0.1); }
+        .social-link:hover { color: white; background: rgba(255,255,255,0.1); border-color: var(--primary); }
+        .footer-bottom { max-width: 1280px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid #1E293B; display: flex; justify-content: space-between; align-items: center; color: #64748B; font-size: 0.9rem; flex-wrap: wrap; gap: 1rem; }
+
+        /* Animations */
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .bento-grid, .audience-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-card.large { grid-column: span 2; }
+        }
+        @media (max-width: 992px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 10rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero p { margin: 0 auto 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { margin-top: 4rem; justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .mobile-menu-btn { display: block; }
+            .section-title { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .bento-grid, .audience-grid { grid-template-columns: 1fr; }
+            .bento-card.large { grid-column: span 1; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { margin: 0 auto 1.5rem; }
+            .footer-brand h3, .footer-links ul { justify-content: center; align-items: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .cta h2 { font-size: 2.5rem; }
+            .audience-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Qur'an Kareem" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-icon-fallback">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                </div>
+                Qur'an Kareem
+            </a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#audience">Who Is It For</a>
+                <a href="#comparison">Compare</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="nav-cta">
+                <a href="https://play.google.com/store/apps/details?id=quran.ng" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download App</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features">Features</a>
+        <a href="#audience">Who Is It For</a>
+        <a href="#comparison">Compare</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://play.google.com/store/apps/details?id=quran.ng" target="_blank" class="btn btn-primary" style="text-align: center; margin-top: 1rem;">Download App</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    100% Free and Ad-Free
+                </div>
+                <!-- FIXED HERO TITLE -->
+                <h1>Qur'an Kareem<br><span>Read & Search</span></h1>
+                <p>Experience a premium, offline friendly application for Android. Beautiful Arabic text, real time search, and seamless bookmarking designed for the global Muslim community.</p>
+                <div class="hero-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=quran.ng" target="_blank" class="btn-play">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" /></svg>
+                        <div class="btn-play-text"><span>GET IT ON</span><span>Google Play</span></div>
+                    </a>
+                    <a href="#features" class="btn btn-secondary" style="background: white; border: 1px solid #E2E8F0; color: var(--text-main);">Explore Features</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="app-screenshot.png" alt="Qur'an Kareem App Interface" class="real-app-image">
+            </div>
+        </section>
+
+        <!-- Tanzil Verification Banner -->
+        <section class="tanzil-banner reveal">
+            <div class="tanzil-content">
+                <div class="tanzil-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    Verified Source
+                </div>
+                <h2>100% Original Tanzil Text</h2>
+                <p>We take the sanctity of the Qur'an seriously. The Arabic text displayed in Qur'an Kareem is sourced directly from the Tanzil Project. It is completely untouched, unmodified, and verified to be 100 percent accurate.</p>
+            </div>
+        </section>
+
+        <!-- Target Audience -->
+        <section id="audience" class="audience">
+            <div class="section-header reveal">
+                <h2 class="section-title">Designed For Every Muslim</h2>
+                <p class="section-subtitle">Whether you are a scholar, a student, or a daily reader, Qur'an Kareem adapts to your needs.</p>
+            </div>
+            <div class="audience-grid">
+                <!-- Scholars -->
+                <div class="audience-card reveal">
+                    <div class="audience-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3>For Scholars and Imams</h3>
+                    <p>Find exactly what you need in seconds. Perfect for preparing Khutbahs or answering questions.</p>
+                    <ul class="audience-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time offline search</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Search entire Qur'an instantly</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Navigate by Surah, Ayah, Juz</li>
+                    </ul>
+                </div>
+                <!-- Students -->
+                <div class="audience-card reveal">
+                    <div class="audience-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h3>For Students and Memorizers</h3>
+                    <p>Master your Hifz with dedicated tools designed to test and strengthen your memory.</p>
+                    <ul class="audience-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Hide and reveal Ayah mode</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Focused memorization tracking</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Add personal notes and highlights</li>
+                    </ul>
+                </div>
+                <!-- Daily Readers -->
+                <div class="audience-card reveal">
+                    <div class="audience-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3>For Daily Readers</h3>
+                    <p>Build a consistent habit and complete your Khatm with ease using our tracking tools.</p>
+                    <ul class="audience-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Khatm completion tracking</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Daily reading goals</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Beautiful light and dark themes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid (Only Supported Features) -->
+        <section id="features" class="features">
+            <div class="section-header reveal">
+                <h2 class="section-title">Packed With Powerful Features</h2>
+                <p class="section-subtitle">Everything you need for a complete, distraction free Qur'an experience.</p>
+            </div>
+            <div class="bento-grid">
+                <!-- 1 -->
+                <div class="bento-card large reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    <h3>Beautiful Reading Experience</h3>
+                    <p>Immerse yourself in the Qur'an with clear Arabic text, continuous scrolling, and page reading modes designed for maximum comfort. Customize your experience for daily reading.</p>
+                </div>
+                <!-- 2 -->
+                <div class="bento-card reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3>Powerful Offline Search</h3>
+                    <p>Instantly find Ayahs with our optimized offline search. No internet connection required.</p>
+                </div>
+                <!-- 3 -->
+                <div class="bento-card reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                    </div>
+                    <h3>Bookmarks and Notes</h3>
+                    <p>Save your favorite verses, add personal reflections, and highlight meaningful passages.</p>
+                </div>
+                <!-- 4 -->
+                <div class="bento-card reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                    <h3>Precise Navigation</h3>
+                    <p>Go directly to any Surah, Ayah, Juz, Hizb, Rub, or Page. Share Ayahs as images.</p>
+                </div>
+                <!-- 5 -->
+                <div class="bento-card reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3>Daily Ayah & Goals</h3>
+                    <p>Receive a daily inspiring Ayah and track your reading goals and Khatm progress.</p>
+                </div>
+                <!-- 6 -->
+                <div class="bento-card reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg>
+                    </div>
+                    <h3>Customizable Themes</h3>
+                    <p>Read comfortably at any time of day with Light, Sepia, Dark, and System adaptive themes.</p>
+                </div>
+                <!-- 7 -->
+                <div class="bento-card reveal">
+                    <div class="bento-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </div>
+                    <h3>Backup and Restore</h3>
+                    <p>Never lose your progress. Safely backup and restore your bookmarks and notes across devices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="comparison">
+            <div class="section-header reveal">
+                <h2 class="section-title">How We Compare to Big Apps</h2>
+                <p class="section-subtitle">See why Qur'an Kareem is the preferred choice for a pure, distraction free experience.</p>
+            </div>
+
+            <div class="comparison-table-wrapper reveal">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="highlight">Qur'an Kareem</th>
+                            <th>Quran.com</th>
+                            <th>Muslim Pro</th>
+                            <th>Quran Majeed</th>
+                            <th>Tarteel</th>
+                            <th>Athan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>100% Free Forever</td>
+                            <td class="highlight"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                        </tr>
+                        <tr>
+                            <td>No Ads or Distractions</td>
+                            <td class="highlight"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                        </tr>
+                        <tr>
+                            <td>100% Original Tanzil Text</td>
+                            <td class="highlight"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><span class="text-limited">Varies</span></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Instant Offline Search</td>
+                            <td class="highlight"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><span class="text-limited">Limited</span></td>
+                            <td><span class="text-limited">Limited</span></td>
+                            <td><span class="text-limited">Limited</span></td>
+                            <td><span class="text-limited">Limited</span></td>
+                            <td><span class="text-limited">Limited</span></td>
+                        </tr>
+                        <tr>
+                            <td>Hide and Reveal for Memorization</td>
+                            <td class="highlight"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                        </tr>
+                        <tr>
+                            <td>No Account Required</td>
+                            <td class="highlight"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                            <td><svg class="cross-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></td>
+                            <td><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                * Comparison based on publicly available information on respective app stores and websites as of 2024.
+            </p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="section-header reveal">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know about the Qur'an Kareem app.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Is the Qur'an text authentic?
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Yes. The Arabic text displayed in Qur'an Kareem is sourced directly from the Tanzil Project. It is 100 percent original, completely untouched, and unmodified.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Is Qur'an Kareem completely free?
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Yes, Qur'an Kareem is a 100 percent free application with no hidden charges, subscriptions, or intrusive ads. We believe everyone should have free access to the Qur'an.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Can Imams use this for real time search?
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Absolutely. The built in offline search engine is highly optimized. Scholars and Imams can search the entire Qur'an and find exactly what they need within seconds, even without internet.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        How does the memorization mode work?
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Students can use the hide and reveal feature. This allows you to hide the Ayah text to test your memory, and reveal it to check if you are correct.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        Who developed and published Qur'an Kareem?
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Qur'an Kareem is developed and published by Earncial Global. You can follow our official updates on TikTok at @quran.ng.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta reveal">
+            <div class="cta-content">
+                <h2>Start Reading Today</h2>
+                <p>Join Muslims worldwide who are enhancing their daily connection with the Qur'an using Qur'an Kareem.</p>
+                <a href="https://play.google.com/store/apps/details?id=quran.ng" target="_blank" class="btn-play">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" /></svg>
+                    <div class="btn-play-text"><span>GET IT ON</span><span>Google Play</span></div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>
+                    <img src="logo.png" alt="Qur'an Kareem" style="width: 32px; height: 32px; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-icon-fallback" style="width: 32px; height: 32px;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+                    Qur'an Kareem
+                </h3>
+                <p>A premium, free, and ad free Qur'an reading application for Android. Designed for the global Muslim community by Earncial Global.</p>
+                <a href="https://www.tiktok.com/@quran.ng" target="_blank" class="social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                    Follow us on TikTok
+                </a>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#audience">Who Is It For</a></li>
+                    <li><a href="#comparison">Compare</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Legal & Info</h4>
+                <ul>
+                    <li><a href="https://quran.earncial.com/privacy" target="_blank">Privacy Policy</a></li>
+                    <li><a href="https://quran.earncial.com/terms" target="_blank">Terms of Service</a></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=quran.ng" target="_blank">Google Play Store</a></li>
+                    <li><a href="https://quran.earncial.com/" target="_blank">Official Website</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright <span id="year"></span> Qur'an Kareem by Earncial Global. All rights reserved.</p>
+            <p>Made with dedication for the Ummah.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); }
+        });
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('active'); });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { mobileMenu.classList.remove('active'); });
+        });
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                faqQuestions.forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { root: null, threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        revealElements.forEach(element => { revealObserver.observe(element); });
+    </script>
+</body>
+</html>
